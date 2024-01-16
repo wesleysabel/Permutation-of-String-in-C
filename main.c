@@ -35,76 +35,42 @@ int next_permutation(int size_string, char **string)
         string[left] = string[right];
         string[right] = temp;
 
-        right--;
-    }
-
-
-
-    return 1;
-}
-
-
-
-int main()
-{
-	char **s;
-	int n;
-	scanf("%d", &n);
-	s = calloc(n, sizeof(char*));
-	for (int i = 0; i < n; i++)
-	{
-		s[i] = calloc(11, sizeof(char));
-		scanf("%s", s[i]);
-	}
-	do
-	{
-		for (int i = 0; i < n; i++)
-			printf("%s%c", s[i], i == n - 1 ? '\n' : ' ');
-	} while (next_permutation(n, s));
-	for (int i = 0; i < n; i++)
-		free(s[i]);
-	free(s);
-	return 0;
-}
-
-
-
-/*
-int next_permutation(int num_strings, char **strings)
-{
-    int index_i = num_strings - 2;
-
-
-    while (index_i >= 0 && strcmp(strings[index_i], strings[index_i + 1]) >= 0)
-    {
-        index_i--;
-    }
-
-    if (index_i < 0)
-    {
-       return 0;
-    }
-
-    int index_j = num_strings - 1;
-
-    while (index_j > index_i && strcmp(strings[index_j], strings[index_i]) <= 0)
-        {
-            index_j--;
-        }
-
-    char *temp = strings[index_i];
-    strings[index_i] = strings[index_j];
-    strings[index_j] = temp;
-
-    int left = index_i + 1;
-    int right = num_strings - 1;
-    while (left < right) {
-        temp = strings[left];
-        strings[left] = strings[right];
-        strings[right] = temp;
         left++;
         right--;
     }
 
     return 1;
-}*/
+}
+
+int main()
+{
+    char **string;
+    int size_string;
+
+    scanf("%d", &size_string);
+
+    string = (char**) calloc(size_string, sizeof(char*));
+
+    for (int k = 0; k < size_string; k++)
+    {
+        string[k] = (char*) calloc(11, sizeof(char));
+        scanf("%s", string[k]);
+    }
+
+    do
+    {
+        for (int i = 0; i < size_string; i++)
+        {
+            printf("%s%c",string[i], i == size_string - 1 ? '\n': ' ');
+        }
+    }
+
+    while (next_permutation(size_string, string));
+
+    for (int j = 0; j < size_string; j++)
+		free(string[j]);
+	free(string);
+
+    return 0;
+}
+
